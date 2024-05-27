@@ -19,7 +19,9 @@ const StyledSearchArea = styled.div`
     background-color: lightblue;
     display: inline-block;
     height: 3rem;
-    padding: 8px
+    padding: 8px;
+    border-radius: 10px;
+    margin-bottom: 5px;
 `;
 
 export default function CharactersPage() {

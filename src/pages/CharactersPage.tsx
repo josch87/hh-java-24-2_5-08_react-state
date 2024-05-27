@@ -14,14 +14,31 @@ const StyledMain = styled.main`
     margin: 2rem;
 `
 
+const StyledSearchArea = styled.div`
+    background-color: lightblue;
+    display: inline-block;
+    height: 3rem;
+`;
+
 export default function CharactersPage() {
     const [characters, setCharacters] = useState<CharacterType[]>(response.results);
 
-    function handleOnChange(event: ChangeEvent<HTMLInputElement>) {
+    function handleFilterByName(event: ChangeEvent<HTMLInputElement>) {
         const inputValue = event.target.value;
         const filteredCharactersByName = response.results
             .filter((character) => character.name.toLowerCase().includes(inputValue.toLowerCase()));
         setCharacters(filteredCharactersByName);
+    }
+
+    function handleFilterByStatus(event: ChangeEvent<HTMLSelectElement>) {
+        const selectedValue: string = event.target.value;
+        if (selectedValue === "") {
+            setCharacters(response.results)
+        } else {
+            const filteredCharactersByStatus = response.results
+                .filter((character) => character.status === selectedValue);
+            setCharacters(filteredCharactersByStatus)
+        }
     }
 
     return (
@@ -30,8 +47,21 @@ export default function CharactersPage() {
                 <h1>
                     All Characters
                 </h1>
-                <label htmlFor="searchByName">Name: </label>
-                <input id="searchByName" type="text" placeholder="Type to search" onChange={handleOnChange}/>
+                <StyledSearchArea>
+                    <label htmlFor="searchByName">Name: </label>
+                    <input id="searchByName" type="text" placeholder="Type to search"
+                           onChange={handleFilterByName}/>
+                    <label htmlFor="searchByStatus">Status: </label>
+                    <select id="searchByStatus" onChange={handleFilterByStatus}>
+                        <option value="">-- Select a status --</option>
+                        <option value="Alive">Alive</option>
+                        <option value="Dead">Dead</option>
+                        <option value="unknown">Unknown</option>
+                    </select>
+
+
+                </StyledSearchArea>
+
                 {characters.length === 0 && <p>No characters found</p>}
                 {characters.length > 0 && <p>Number of characters: {characters.length}</p>}
 

@@ -8,9 +8,12 @@ type Props = {
 export default function CharacterCard({character}: Props) {
     return (
         <StyledArticle>
-            <StyledCharacterImage src={character.image} alt={character.name} width={300} />
+            <StyledCharacterImage src={character.image} alt={character.name} width={300}/>
             <StyledCharacterName>{character.name}</StyledCharacterName>
             {character.status}
+            <span>
+                {character.episode.length > 1 ? character.episode.length + " episodes" : character.episode.length + " episode"}
+            </span>
         </StyledArticle>
     )
 }

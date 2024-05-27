@@ -8,6 +8,7 @@ const StyledCharactersSection = styled.section`
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
+    margin-top: 2rem;
 `
 
 const StyledMain = styled.main`

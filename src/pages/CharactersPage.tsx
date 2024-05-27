@@ -20,6 +20,7 @@ function handleOnChange(event: ChangeEvent<HTMLInputElement>) {
                 </h1>
                 <label htmlFor="searchByName">Name: </label>
                 <input id="searchByName" type="text" placeholder="Type to search" onChange={handleOnChange}/>
+                {characters.length === 0 && <p>No characters found</p>}
                 {characters.map((character) => <CharacterCard character={character} key={character.id}/>)}
             </main>
         </>

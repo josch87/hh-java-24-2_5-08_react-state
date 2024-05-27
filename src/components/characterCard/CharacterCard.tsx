@@ -9,8 +9,8 @@ export default function CharacterCard({character}: Props) {
 
 
     return (
-        <StyledArticle status={character.status}>
-            <StyledCharacterImage src={character.image} alt={character.name} width={300}/>
+        <StyledArticle $status={character.status}>
+            <StyledCharacterImage src={character.image} alt={character.name} draggable="false" />
             <StyledCharacterName>{character.name}</StyledCharacterName>
             {character.status}
             <span>

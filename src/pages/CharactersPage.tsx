@@ -65,7 +65,7 @@ export default function CharactersPage() {
         <>
             <StyledMain>
                 <h1>
-                    All Characters
+                    Rick and Morty Characters
                 </h1>
                 <StyledSearchArea>
                     <label htmlFor="searchByName">Name: </label>

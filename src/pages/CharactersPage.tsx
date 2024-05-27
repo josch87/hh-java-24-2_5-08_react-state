@@ -24,6 +24,18 @@ const StyledSearchArea = styled.div`
     margin-bottom: 5px;
 `;
 
+const StyledResetButton = styled.button`
+    cursor: pointer;
+    border: 1px solid lightgray;
+    background: white;
+    
+    &:active {
+        border: 1px solid white;
+        background: lightblue;
+    }
+    
+`;
+
 export default function CharactersPage() {
     const [characters, setCharacters] = useState<CharacterType[]>(response.results);
     const [nameFilter, setNameFilter] = useState<string>("");
@@ -66,7 +78,7 @@ export default function CharactersPage() {
                         <option value="Dead">Dead</option>
                         <option value="unknown">Unknown</option>
                     </select>
-                    <button type="reset" onClick={handleResetSearch}>Reset</button>
+                    <StyledResetButton type="reset" onClick={handleResetSearch}>Reset</StyledResetButton>
                 </StyledSearchArea>
 
                 {characters.length === 0 && <p>No characters found</p>}

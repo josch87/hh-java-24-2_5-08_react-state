@@ -7,8 +7,14 @@ type ButtonProps = {
 export const StyledArticle = styled.article<ButtonProps>`
     width: 250px;
     min-height: 350px;
-    border: 1px solid lightblue;
-    border-color: ${props => (props.status === "Alive" ? "lightblue" : "red")}
+    border-width: 2px;
+    border-style: solid;
+    border-color: ${props => (
+            props.status === "Alive" ?
+                    "lightblue" :
+                    props.status === "unknown" ?
+                            "lightgreen" : "red"
+    )};
     border-radius: 20px;
     padding: 20px;
     display: flex;

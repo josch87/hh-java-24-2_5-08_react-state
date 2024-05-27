@@ -1,4 +1,4 @@
-import {ChangeEvent, useState} from "react";
+import {ChangeEvent, useEffect, useState} from "react";
 import {response} from "../data/charactersData.ts";
 import {CharacterType} from "../model/model.ts";
 import CharacterCard from "../components/characterCard/CharacterCard.tsx";
@@ -26,24 +26,23 @@ const StyledSearchArea = styled.div`
 
 export default function CharactersPage() {
     const [characters, setCharacters] = useState<CharacterType[]>(response.results);
+    const [nameFilter, setNameFilter] = useState<string>("");
+    const [statusFilter, setStatusFilter] = useState<string>("");
 
     function handleFilterByName(event: ChangeEvent<HTMLInputElement>) {
-        const inputValue = event.target.value;
-        const filteredCharactersByName = response.results
-            .filter((character) => character.name.toLowerCase().includes(inputValue.toLowerCase()));
-        setCharacters(filteredCharactersByName);
+        setNameFilter(event.target.value.toLowerCase());
     }
 
     function handleFilterByStatus(event: ChangeEvent<HTMLSelectElement>) {
-        const selectedValue: string = event.target.value;
-        if (selectedValue === "") {
-            setCharacters(response.results)
-        } else {
-            const filteredCharactersByStatus = response.results
-                .filter((character) => character.status === selectedValue);
-            setCharacters(filteredCharactersByStatus)
-        }
+        setStatusFilter((event.target.value));
     }
+
+    useEffect(() => {
+        const filteredCharacters = response.results
+            .filter((character) => character.name.toLowerCase().includes(nameFilter))
+            .filter((character) => statusFilter === "" || character.status === statusFilter);
+        setCharacters(filteredCharacters);
+    }, [nameFilter, statusFilter])
 
     return (
         <>

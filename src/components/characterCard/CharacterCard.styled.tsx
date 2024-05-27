@@ -1,10 +1,14 @@
 import styled from "styled-components";
 
+type ButtonProps = {
+    status?: string,
+}
 
-export const StyledArticle = styled.article`
+export const StyledArticle = styled.article<ButtonProps>`
     width: 250px;
     min-height: 350px;
     border: 1px solid lightblue;
+    border-color: ${props => (props.status === "Alive" ? "lightblue" : "red")}
     border-radius: 20px;
     padding: 20px;
     display: flex;

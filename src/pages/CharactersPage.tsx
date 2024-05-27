@@ -37,6 +37,11 @@ export default function CharactersPage() {
         setStatusFilter((event.target.value));
     }
 
+    function handleResetSearch() {
+        setNameFilter("")
+        setStatusFilter("")
+    }
+
     useEffect(() => {
         const filteredCharacters = response.results
             .filter((character) => character.name.toLowerCase().includes(nameFilter))
@@ -52,17 +57,16 @@ export default function CharactersPage() {
                 </h1>
                 <StyledSearchArea>
                     <label htmlFor="searchByName">Name: </label>
-                    <input id="searchByName" type="text" placeholder="Type to search"
+                    <input id="searchByName" type="text" placeholder="Type to search" value={nameFilter}
                            onChange={handleFilterByName}/>
                     <label htmlFor="searchByStatus">Status: </label>
-                    <select id="searchByStatus" onChange={handleFilterByStatus}>
+                    <select id="searchByStatus" onChange={handleFilterByStatus} value={statusFilter}>
                         <option value="">-- Select a status --</option>
                         <option value="Alive">Alive</option>
                         <option value="Dead">Dead</option>
                         <option value="unknown">Unknown</option>
                     </select>
-
-
+                    <button type="reset" onClick={handleResetSearch}>Reset</button>
                 </StyledSearchArea>
 
                 {characters.length === 0 && <p>No characters found</p>}

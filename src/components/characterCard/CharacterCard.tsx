@@ -6,8 +6,10 @@ type Props = {
 }
 
 export default function CharacterCard({character}: Props) {
+
+
     return (
-        <StyledArticle>
+        <StyledArticle status={character.status}>
             <StyledCharacterImage src={character.image} alt={character.name} width={300}/>
             <StyledCharacterName>{character.name}</StyledCharacterName>
             {character.status}

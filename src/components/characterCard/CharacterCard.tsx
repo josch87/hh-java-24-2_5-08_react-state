@@ -1,4 +1,5 @@
 import {CharacterType} from "../../model/model.ts";
+import {StyledArticle, StyledCharacterImage, StyledCharacterName} from "./CharacterCard.styled.tsx";
 
 type Props = {
     character: CharacterType,
@@ -6,8 +7,10 @@ type Props = {
 
 export default function CharacterCard({character}: Props) {
     return (
-        <article>
-            <h2>{character.name}</h2>
-        </article>
+        <StyledArticle>
+            <StyledCharacterImage src={character.image} alt={character.name} width={300} />
+            <StyledCharacterName>{character.name}</StyledCharacterName>
+            {character.status}
+        </StyledArticle>
     )
 }

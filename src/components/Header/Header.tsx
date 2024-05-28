@@ -8,7 +8,7 @@ const StyledHeader = styled.header`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
+    padding: 0 2rem;
 `;
 
 const StyledLink = styled(Link)`

@@ -13,7 +13,7 @@ export type CharacterType = {
     }
 }
 
-export type CharacterDTOType = {
+export type NewCharacterDTOType = {
     name: string,
     status: StatusEnum | "",
     species: string,

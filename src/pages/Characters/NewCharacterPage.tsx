@@ -6,10 +6,11 @@ import {
     SetStateAction,
     useState
 } from "react";
-import {CharacterDTOType, CharacterType, StatusEnum} from "../../model/model.ts";
-import {isStatusEnum} from "../../model/typeGuard.ts";
+import {NewCharacterDTOType, CharacterType} from "../../model/model.ts";
 import NewCharacterForm from "../../components/NewCharacterForm/NewCharacterForm.tsx";
 import {useNavigate} from "react-router-dom";
+import CharacterCard from "../../components/CharacterCard/CharacterCard.tsx";
+import {mapNewCharacterDTOToCharacter} from "../../model/characterMapper.ts";
 
 type NewCharacterPageProps = {
     characters: CharacterType[],
@@ -19,13 +20,13 @@ type NewCharacterPageProps = {
 export default function NewCharacterPage({characters, setCharacters}: NewCharacterPageProps) {
     const navigate = useNavigate();
 
-    const initialCharacter: CharacterDTOType = {
+    const initialCharacter: NewCharacterDTOType = {
         name: "",
         species: "",
         status: "",
     }
 
-    const [newCharacter, setNewCharacter] = useState<CharacterDTOType>(initialCharacter);
+    const [newCharacter, setNewCharacter] = useState<NewCharacterDTOType>(initialCharacter);
 
     function onUserInput(event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
         setNewCharacter({...newCharacter, [event.target.name]: event.target.value})
@@ -38,27 +39,25 @@ export default function NewCharacterPage({characters, setCharacters}: NewCharact
             throw new Error("Status cannot be empty");
         }
 
-        if (!isStatusEnum(newCharacter.status)) {
-            throw new Error("Invalid status");
-        }
-
-        const characterToSave: CharacterType = {
-            id: characters.length + 1,
-            image: "",
-            episode: [],
-            location: {name: "", url: ""},
-            ...newCharacter,
-            status: newCharacter.status as StatusEnum,
-        }
+        const characterToSave = mapNewCharacterDTOToCharacter(newCharacter);
         setCharacters([...characters, characterToSave])
         setNewCharacter(initialCharacter);
 
         navigate("/characters/" + characterToSave.id)
     }
 
+    const characterInPreviewDTO = {...newCharacter}
+    if (characterInPreviewDTO.status === "") {
+        characterInPreviewDTO.status = "unknown"
+    }
+    const characterInPreview: CharacterType = mapNewCharacterDTOToCharacter(characterInPreviewDTO);
+
+
+
     return (
         <Main title={"Create new character"}>
             <NewCharacterForm newCharacter={newCharacter} onSaveCharacter={onSaveCharacter} onUserInput={onUserInput}/>
+            <CharacterCard character={characterInPreview} />
         </Main>
     )
 }

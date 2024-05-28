@@ -1,8 +1,8 @@
-import {CharacterDTOType} from "../../model/model.ts";
+import {NewCharacterDTOType} from "../../model/model.ts";
 import {ChangeEventHandler, FormEventHandler} from "react";
 
 type NewCharacterFormProps = {
-    newCharacter: CharacterDTOType,
+    newCharacter: NewCharacterDTOType,
     onSaveCharacter: FormEventHandler<HTMLFormElement>,
     onUserInput: ChangeEventHandler<HTMLInputElement | HTMLSelectElement>,
 }

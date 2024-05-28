@@ -40,6 +40,7 @@ export default function NewCharacterPage({characters, setCharacters}: NewCharact
         }
 
         const characterToSave = mapNewCharacterDTOToCharacter(newCharacter);
+        characterToSave.id = characters.length + 1;
         setCharacters([...characters, characterToSave])
         setNewCharacter(initialCharacter);
 

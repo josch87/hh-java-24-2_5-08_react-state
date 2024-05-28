@@ -14,6 +14,8 @@ const StyledHeader = styled.header`
 const StyledLink = styled(Link)`
     text-decoration: none;
     color: inherit;
+    font-size: 2rem;
+    font-weight: bold;
 `;
 
 
@@ -22,7 +24,7 @@ export default function Header() {
 
     return (
         <StyledHeader>
-            <StyledLink to="/" title="Home"><h1>Rick & Morty</h1></StyledLink>
+            <StyledLink to="/" title="Home">Rick & Morty</StyledLink>
             <MainNavigation />
         </StyledHeader>
     )

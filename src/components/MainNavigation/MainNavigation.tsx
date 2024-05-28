@@ -1,5 +1,6 @@
 import {Link} from "react-router-dom";
 import styled from "styled-components";
+import {NavigationItemType} from "../../model/model.ts";
 
 const StyledUnorderedList = styled.ul`
     display: flex;
@@ -25,19 +26,31 @@ const StyledLink = styled(Link)`
     }
 `;
 
+const navigationItems: NavigationItemType[] = [
+    {
+        title: "Home",
+        link: "/",
+        sort: 1
+    },
+    {
+        title: "Characters",
+        link: "/characters",
+        sort: 2
+    }
+]
+
 export default function MainNavigation() {
     return (
         <nav>
             <StyledUnorderedList>
-                <StyledListItem>
-                    <StyledLink to="/characters/new">New</StyledLink>
-                </StyledListItem>
-                <StyledListItem>
-                    <StyledLink to="/">Home</StyledLink>
-                </StyledListItem>
-                <StyledListItem>
-                    <StyledLink to="/characters">Characters</StyledLink>
-                </StyledListItem>
+                {navigationItems.sort((a,b) => a.sort - b.sort)
+                    .map((item) => { return (
+                        <StyledListItem key={item.sort}>
+                            <StyledLink to={item.link}>{item.title}</StyledLink>
+                        </StyledListItem>
+
+                        )
+                    })}
             </StyledUnorderedList>
         </nav>
     )

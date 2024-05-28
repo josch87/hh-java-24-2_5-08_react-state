@@ -18,3 +18,9 @@ export type CharacterDTOType = {
     status: StatusEnum | "",
     species: string,
 }
+
+export type NavigationItemType = {
+    title: string,
+    link: string,
+    sort: number,
+}

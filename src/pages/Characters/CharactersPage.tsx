@@ -4,16 +4,13 @@ import {CharacterType} from "../../model/model.ts";
 import CharacterCard from "../../components/CharacterCard/CharacterCard.tsx";
 import styled from "styled-components";
 import {f} from "vite/dist/node/types.d-aGj9QkWt";
+import Main from "../templates/Main.tsx";
 
 const StyledCharactersSection = styled.section`
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
     margin-top: 2rem;
-`
-
-const StyledMain = styled.main`
-    margin: 2rem;
 `
 
 const StyledSearchArea = styled.div`
@@ -59,7 +56,7 @@ export default function CharactersPage({characters, setCharacters, nameFilter, s
 
     return (
         <>
-            <StyledMain>
+            <Main>
                 <h1>
                     Rick and Morty Characters
                 </h1>
@@ -83,7 +80,7 @@ export default function CharactersPage({characters, setCharacters, nameFilter, s
                 <StyledCharactersSection>
                     {characters.map((character) => <CharacterCard character={character} key={character.id}/>)}
                 </StyledCharactersSection>
-            </StyledMain>
+            </Main>
         </>
     )
 }

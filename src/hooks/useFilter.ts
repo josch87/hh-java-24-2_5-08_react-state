@@ -24,9 +24,9 @@ export default function useFilter(characters: CharacterType[]) {
         .filter((character) => character.name.toLowerCase().includes(nameFilter))
         .filter((character) => statusFilter === "" || character.status === statusFilter);
 
-    const filteredCharactersAreZero = filteredCharacters.length === 0;
+    const areFilteredCharactersZero = filteredCharacters.length === 0;
 
 
 
-    return {handleFilterByName, handleFilterByStatus, handleResetSearch, filteredCharacters, nameFilter, statusFilter, filteredCharactersAreZero}
+    return {handleFilterByName, handleFilterByStatus, handleResetSearch, filteredCharacters, nameFilter, statusFilter, areFilteredCharactersZero}
 }

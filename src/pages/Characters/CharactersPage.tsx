@@ -45,7 +45,7 @@ export default function CharactersPage({characters,}: CharactersPageProps) {
         filteredCharacters,
         nameFilter,
         statusFilter,
-        filteredCharactersAreZero
+        areFilteredCharactersZero
     } = useFilter(characters)
 
     return (
@@ -65,7 +65,7 @@ export default function CharactersPage({characters,}: CharactersPageProps) {
                     <StyledResetButton type="reset" onClick={handleResetSearch}>Reset</StyledResetButton>
                 </StyledSearchArea>
 
-                {filteredCharactersAreZero ? <p>No characters found</p> :
+                {areFilteredCharactersZero ? <p>No characters found</p> :
                     <p>Number of characters: {filteredCharacters.length}</p>}
 
                 <StyledCharactersSection>

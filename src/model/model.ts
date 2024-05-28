@@ -1,8 +1,10 @@
+export type StatusEnum = "Alive" | "Dead" | "unknown";
+
 export type CharacterType = {
     id: number,
     name: string,
     image: string,
-    status: string,
+    status: StatusEnum,
     episode: string[],
     species: string,
     location: {
@@ -13,6 +15,6 @@ export type CharacterType = {
 
 export type CharacterDTOType = {
     name: string,
-    status: string,
+    status: StatusEnum | "",
     species: string,
 }

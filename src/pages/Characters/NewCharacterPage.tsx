@@ -6,7 +6,8 @@ import {
     SetStateAction,
     useState
 } from "react";
-import {CharacterDTOType, CharacterType} from "../../model/model.ts";
+import {CharacterDTOType, CharacterType, StatusEnum} from "../../model/model.ts";
+import {isStatusEnum} from "../../model/typeGuard.ts";
 
 type NewCharacterPageProps = {
     characters: CharacterType[],
@@ -23,20 +24,28 @@ export default function NewCharacterPage({characters, setCharacters}: NewCharact
 
     const [newCharacter, setNewCharacter] = useState<CharacterDTOType>(initialCharacter);
 
-    function onUserInput(event: ChangeEvent<HTMLInputElement>) {
+    function onUserInput(event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
         setNewCharacter({...newCharacter, [event.target.name]: event.target.value})
     }
 
-
     function onSaveCharacter(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
+
+        if (newCharacter.status ==="") {
+            throw new Error("Status cannot be empty");
+        }
+
+        if (!isStatusEnum(newCharacter.status)) {
+            throw new Error("Invalid status");
+        }
 
         const characterToSave: CharacterType = {
             id: characters.length + 1,
             image: "",
             episode: [],
-            location: {name:"", url: ""},
-            ...newCharacter
+            location: {name: "", url: ""},
+            ...newCharacter,
+            status: newCharacter.status as StatusEnum,
         }
         setCharacters([...characters, characterToSave])
         setNewCharacter(initialCharacter);
@@ -47,16 +56,22 @@ export default function NewCharacterPage({characters, setCharacters}: NewCharact
             <h2>Create new character</h2>
             <form onSubmit={onSaveCharacter}>
                 <div>
-                    <label form={"name"}>Name</label>
-                    <input type={"text"} id={"name"} name={"name"} onChange={onUserInput} value={newCharacter.name}/>
+                    <label htmlFor={"name"}>Name</label>
+                    <input type={"text"} id={"name"} name={"name"} onChange={onUserInput} value={newCharacter.name} required/>
                 </div>
                 <div>
-                    <label form={"status"}>Status</label>
-                    <input type={"text"} id={"status"} name={"status"} onChange={onUserInput} value={newCharacter.status} />
+                    <label htmlFor={"status"}>Status</label>
+                    <select id={"status"} name={"status"} onChange={onUserInput} value={newCharacter.status} required>
+                        <option value={""}>-- Select a status</option>
+                        <option value={"Alive"}>Alive</option>
+                        <option value={"Dead"}>Dead</option>
+                        <option value={"unknown"}>Unknown</option>
+                    </select>
                 </div>
                 <div>
-                    <label form={"species"}>Species</label>
-                    <input type={"text"} id={"species"} name={"species"} onChange={onUserInput} value={newCharacter.species}/>
+                    <label htmlFor={"species"}>Species</label>
+                    <input type={"text"} id={"species"} name={"species"} onChange={onUserInput}
+                           value={newCharacter.species}/>
                 </div>
                 <button type={"submit"}>Save</button>
             </form>

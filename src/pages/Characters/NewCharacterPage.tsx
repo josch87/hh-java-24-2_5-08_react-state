@@ -40,9 +40,7 @@ export default function NewCharacterPage({characters, setCharacters}: NewCharact
         }
         setCharacters([...characters, characterToSave])
         setNewCharacter(initialCharacter);
-        console.log("submitCharacters:", characters)
     }
-        console.log("newCharacterPageCharacters:", characters)
 
     return (
         <Main>

@@ -1,4 +1,4 @@
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import {CharacterType} from "../model/model.ts";
 
 type CharacterDetailsPageProps = {
@@ -21,6 +21,7 @@ export default function CharacterDetailsPage({characters}: CharacterDetailsPageP
 
     return (
         <>
+            <Link to={"/characters"}>&larr; All Characters</Link>
             <img src={character.image} alt={character.name} />
             <h2>{character.name}</h2>
         </>

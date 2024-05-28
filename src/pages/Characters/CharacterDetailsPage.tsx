@@ -6,8 +6,6 @@ type CharacterDetailsPageProps = {
 };
 
 
-
-
 export default function CharacterDetailsPage({characters}: CharacterDetailsPageProps) {
 
     const {id} = useParams();
@@ -22,8 +20,25 @@ export default function CharacterDetailsPage({characters}: CharacterDetailsPageP
     return (
         <>
             <Link to={"/characters"}>&larr; All Characters</Link>
-            <img src={character.image} alt={character.name} />
+            <img src={character.image} alt={character.name}/>
             <h2>{character.name}</h2>
+            <table>
+                <tbody>
+                <tr>
+                    <td>Status:</td>
+                    <td>{character.status}</td>
+                </tr>
+                <tr>
+                    <td>Species:</td>
+                    <td>{character.species}</td>
+                </tr>
+                <tr>
+                    <td>Location:</td>
+                    <td>{character.location.name}</td>
+                </tr>
+                </tbody>
+            </table>
+
         </>
     )
 }

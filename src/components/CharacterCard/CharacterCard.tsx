@@ -15,7 +15,9 @@ export default function CharacterCard({character}: Props) {
 
     return (
         <StyledArticle $status={character.status} onClick={navigateToDetails}>
-            <StyledCharacterImage src={character.image} alt={character.name} draggable="false" />
+            {character.image ?
+                <StyledCharacterImage src={character.image} alt={character.name} draggable="false"/> :
+                <StyledCharacterImage src="/src/assets/image-placeholder.jpg" alt={character.name} draggable="false"/> }
             <StyledCharacterName>{character.name}</StyledCharacterName>
             {character.status}
             <span>

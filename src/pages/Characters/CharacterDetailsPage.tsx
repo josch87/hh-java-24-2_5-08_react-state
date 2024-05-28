@@ -30,7 +30,10 @@ export default function CharacterDetailsPage({characters}: CharacterDetailsPageP
             <Link to={"/characters"}>&larr; All Characters</Link>
 
             <StyledCharacterDetailsCard>
-                <img src={character.image} alt={character.name}/>
+                {character.image ?
+                    <img src={character.image} alt={character.name}/> :
+                    <img src="/src/assets/image-placeholder.jpg" alt={character.name}/>
+                }
                 <div>
                     <h2>{character.name}</h2>
                     <table>

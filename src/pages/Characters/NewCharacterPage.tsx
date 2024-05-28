@@ -8,6 +8,8 @@ import {
 } from "react";
 import {CharacterDTOType, CharacterType, StatusEnum} from "../../model/model.ts";
 import {isStatusEnum} from "../../model/typeGuard.ts";
+import NewCharacterForm from "../../components/NewCharacterForm/NewCharacterForm.tsx";
+import {useNavigate} from "react-router-dom";
 
 type NewCharacterPageProps = {
     characters: CharacterType[],
@@ -15,6 +17,7 @@ type NewCharacterPageProps = {
 }
 
 export default function NewCharacterPage({characters, setCharacters}: NewCharacterPageProps) {
+    const navigate = useNavigate();
 
     const initialCharacter: CharacterDTOType = {
         name: "",
@@ -31,7 +34,7 @@ export default function NewCharacterPage({characters, setCharacters}: NewCharact
     function onSaveCharacter(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
 
-        if (newCharacter.status ==="") {
+        if (newCharacter.status === "") {
             throw new Error("Status cannot be empty");
         }
 
@@ -49,31 +52,13 @@ export default function NewCharacterPage({characters, setCharacters}: NewCharact
         }
         setCharacters([...characters, characterToSave])
         setNewCharacter(initialCharacter);
+
+        navigate("/characters/" + characterToSave.id)
     }
 
     return (
         <Main title={"Create new character"}>
-            <form onSubmit={onSaveCharacter}>
-                <div>
-                    <label htmlFor={"name"}>Name</label>
-                    <input type={"text"} id={"name"} name={"name"} onChange={onUserInput} value={newCharacter.name} required/>
-                </div>
-                <div>
-                    <label htmlFor={"status"}>Status</label>
-                    <select id={"status"} name={"status"} onChange={onUserInput} value={newCharacter.status} required>
-                        <option value={""}>-- Select a status</option>
-                        <option value={"Alive"}>Alive</option>
-                        <option value={"Dead"}>Dead</option>
-                        <option value={"unknown"}>Unknown</option>
-                    </select>
-                </div>
-                <div>
-                    <label htmlFor={"species"}>Species</label>
-                    <input type={"text"} id={"species"} name={"species"} onChange={onUserInput}
-                           value={newCharacter.species}/>
-                </div>
-                <button type={"submit"}>Save</button>
-            </form>
+            <NewCharacterForm newCharacter={newCharacter} onSaveCharacter={onSaveCharacter} onUserInput={onUserInput}/>
         </Main>
     )
 }

@@ -13,9 +13,6 @@ function App() {
 
     const [characters, setCharacters] = useState<CharacterType[]>(response.results);
 
-
-    console.log("charactersApp:", characters)
-
     return (
         <>
             <Header/>

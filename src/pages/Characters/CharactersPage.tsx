@@ -1,8 +1,8 @@
-import {ChangeEvent, useState} from "react";
 import {CharacterType} from "../../model/model.ts";
 import CharacterCard from "../../components/CharacterCard/CharacterCard.tsx";
 import styled from "styled-components";
 import Main from "../templates/Main.tsx";
+import useFilter from "../../hooks/useFilter.ts";
 
 const StyledCharactersSection = styled.section`
     display: flex;
@@ -38,26 +38,15 @@ type CharactersPageProps = {
 
 export default function CharactersPage({characters,}: CharactersPageProps) {
 
-    const [nameFilter, setNameFilter] = useState<string>("");
-    const [statusFilter, setStatusFilter] = useState<string>("");
-
-    function handleFilterByName(event: ChangeEvent<HTMLInputElement>) {
-        setNameFilter(event.target.value.toLowerCase());
-    }
-
-    function handleFilterByStatus(event: ChangeEvent<HTMLSelectElement>) {
-        setStatusFilter((event.target.value));
-    }
-
-    function handleResetSearch() {
-        setNameFilter("")
-        setStatusFilter("")
-    }
-
-    const filteredCharacters = characters
-        .filter((character) => character.name.toLowerCase().includes(nameFilter))
-        .filter((character) => statusFilter === "" || character.status === statusFilter);
-
+    const {
+        handleFilterByName,
+        handleFilterByStatus,
+        handleResetSearch,
+        filteredCharacters,
+        nameFilter,
+        statusFilter,
+        filteredCharactersAreZero
+    } = useFilter(characters)
 
     return (
         <>
@@ -79,8 +68,8 @@ export default function CharactersPage({characters,}: CharactersPageProps) {
                     <StyledResetButton type="reset" onClick={handleResetSearch}>Reset</StyledResetButton>
                 </StyledSearchArea>
 
-                {filteredCharacters.length === 0 && <p>No characters found</p>}
-                {filteredCharacters.length > 0 && <p>Number of characters: {characters.length}</p>}
+                {filteredCharactersAreZero ? <p>No characters found</p> :
+                    <p>Number of characters: {filteredCharacters.length}</p>}
 
                 <StyledCharactersSection>
                     {filteredCharacters.map((character) => <CharacterCard character={character} key={character.id}/>)}

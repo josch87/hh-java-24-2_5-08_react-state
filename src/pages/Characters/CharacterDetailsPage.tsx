@@ -13,6 +13,11 @@ const StyledCharacterDetailsCard = styled.article`
     margin-top: 2rem;
 `;
 
+const StyledTable = styled.table`
+    td:first-child {
+        padding-right: 15px;
+    }
+`;
 
 export default function CharacterDetailsPage({characters}: CharacterDetailsPageProps) {
 
@@ -36,7 +41,7 @@ export default function CharacterDetailsPage({characters}: CharacterDetailsPageP
                 }
                 <div>
                     <h2>{character.name}</h2>
-                    <table>
+                    <StyledTable>
                         <tbody>
                         <tr>
                             <td>Status:</td>
@@ -59,7 +64,7 @@ export default function CharacterDetailsPage({characters}: CharacterDetailsPageP
                             <td>{character.episode.length}</td>
                         </tr>
                         </tbody>
-                    </table>
+                    </StyledTable>
                 </div>
             </StyledCharacterDetailsCard>
 

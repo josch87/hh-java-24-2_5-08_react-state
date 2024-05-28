@@ -20,6 +20,7 @@ export const StyledArticle = styled.article<ButtonProps>`
     display: flex;
     flex-direction: column;
     align-items: center;
+    cursor: pointer;
     
     &:hover {
         background-color: lightcyan;

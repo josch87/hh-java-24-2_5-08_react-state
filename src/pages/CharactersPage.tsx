@@ -1,8 +1,9 @@
-import {ChangeEvent, useEffect, useState} from "react";
+import {useEffect} from "react";
 import {response} from "../data/charactersData.ts";
 import {CharacterType} from "../model/model.ts";
 import CharacterCard from "../components/CharacterCard/CharacterCard.tsx";
 import styled from "styled-components";
+import {f} from "vite/dist/node/types.d-aGj9QkWt";
 
 const StyledCharactersSection = styled.section`
     display: flex;
@@ -36,24 +37,19 @@ const StyledResetButton = styled.button`
     
 `;
 
-export default function CharactersPage() {
-    const [characters, setCharacters] = useState<CharacterType[]>(response.results);
-    const [nameFilter, setNameFilter] = useState<string>("");
-    const [statusFilter, setStatusFilter] = useState<string>("");
+type CharactersPageProps = {
+    characters : CharacterType[],
+    setCharacters: f,
+    nameFilter: string,
+    setNameFilter: f,
+    statusFilter: string,
+    setStatusFilter: f,
+    onFilterByName: f,
+    onFilterByStatus: f,
+    onResetSearch: f,
+}
 
-    function handleFilterByName(event: ChangeEvent<HTMLInputElement>) {
-        setNameFilter(event.target.value.toLowerCase());
-    }
-
-    function handleFilterByStatus(event: ChangeEvent<HTMLSelectElement>) {
-        setStatusFilter((event.target.value));
-    }
-
-    function handleResetSearch() {
-        setNameFilter("")
-        setStatusFilter("")
-    }
-
+export default function CharactersPage({characters, setCharacters, nameFilter, setNameFilter, statusFilter, setStatusFilter, onFilterByName, onFilterByStatus, onResetSearch}: CharactersPageProps) {
     useEffect(() => {
         const filteredCharacters = response.results
             .filter((character) => character.name.toLowerCase().includes(nameFilter))
@@ -70,15 +66,15 @@ export default function CharactersPage() {
                 <StyledSearchArea>
                     <label htmlFor="searchByName">Name: </label>
                     <input id="searchByName" type="text" placeholder="Type to search" value={nameFilter}
-                           onChange={handleFilterByName}/>
+                           onChange={onFilterByName}/>
                     <label htmlFor="searchByStatus">Status: </label>
-                    <select id="searchByStatus" onChange={handleFilterByStatus} value={statusFilter}>
+                    <select id="searchByStatus" onChange={onFilterByStatus} value={statusFilter}>
                         <option value="">-- Select a status --</option>
                         <option value="Alive">Alive</option>
                         <option value="Dead">Dead</option>
                         <option value="unknown">Unknown</option>
                     </select>
-                    <StyledResetButton type="reset" onClick={handleResetSearch}>Reset</StyledResetButton>
+                    <StyledResetButton type="reset" onClick={onResetSearch}>Reset</StyledResetButton>
                 </StyledSearchArea>
 
                 {characters.length === 0 && <p>No characters found</p>}

@@ -10,3 +10,9 @@ export type CharacterType = {
         url: string,
     }
 }
+
+export type CharacterDTOType = {
+    name: string,
+    status: string,
+    species: string,
+}

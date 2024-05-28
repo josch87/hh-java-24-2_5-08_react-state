@@ -2,7 +2,7 @@ import styled from "styled-components";
 import React from "react";
 
 type MainProps = {
-    children: React.ReactNode
+    children?: React.ReactNode
 }
 
 const StyledMain = styled.main`

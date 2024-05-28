@@ -30,6 +30,9 @@ export default function MainNavigation() {
         <nav>
             <StyledUnorderedList>
                 <StyledListItem>
+                    <StyledLink to="/characters/new">New</StyledLink>
+                </StyledListItem>
+                <StyledListItem>
                     <StyledLink to="/">Home</StyledLink>
                 </StyledListItem>
                 <StyledListItem>

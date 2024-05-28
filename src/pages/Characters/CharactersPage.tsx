@@ -50,10 +50,7 @@ export default function CharactersPage({characters,}: CharactersPageProps) {
 
     return (
         <>
-            <Main>
-                <h1>
-                    Rick and Morty Characters
-                </h1>
+            <Main title={"Characters"}>
                 <StyledSearchArea>
                     <label htmlFor="searchByName">Name: </label>
                     <input id="searchByName" type="text" placeholder="Type to search" value={nameFilter}

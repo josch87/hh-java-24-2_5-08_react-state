@@ -52,8 +52,7 @@ export default function NewCharacterPage({characters, setCharacters}: NewCharact
     }
 
     return (
-        <Main>
-            <h2>Create new character</h2>
+        <Main title={"Create new character"}>
             <form onSubmit={onSaveCharacter}>
                 <div>
                     <label htmlFor={"name"}>Name</label>

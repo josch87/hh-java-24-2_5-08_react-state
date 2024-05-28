@@ -3,7 +3,6 @@ import {CharacterType} from "../model/model.ts";
 
 export default function useFilter(characters: CharacterType[]) {
 
-
     const [nameFilter, setNameFilter] = useState<string>("");
     const [statusFilter, setStatusFilter] = useState<string>("");
 

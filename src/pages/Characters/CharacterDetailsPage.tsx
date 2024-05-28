@@ -9,6 +9,8 @@ type CharacterDetailsPageProps = {
 
 const StyledCharacterDetailsCard = styled.article`
     display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
 `;
 
 

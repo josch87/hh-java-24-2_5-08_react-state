@@ -37,9 +37,7 @@ function App() {
                         characters={characters}
                         setCharacters={setCharacters}
                         nameFilter={nameFilter}
-                        setNameFilter={setNameFilter}
                         statusFilter={statusFilter}
-                        setStatusFilter={setStatusFilter}
                         onFilterByName={handleFilterByName}
                         onFilterByStatus={handleFilterByStatus}
                         onResetSearch={handleResetSearch}

@@ -1,9 +1,8 @@
-import {useEffect} from "react";
+import {ChangeEventHandler, Dispatch, MouseEventHandler, SetStateAction, useEffect} from "react";
 import {response} from "../../data/charactersData.ts";
 import {CharacterType} from "../../model/model.ts";
 import CharacterCard from "../../components/CharacterCard/CharacterCard.tsx";
 import styled from "styled-components";
-import {f} from "vite/dist/node/types.d-aGj9QkWt";
 import Main from "../templates/Main.tsx";
 
 const StyledCharactersSection = styled.section`
@@ -36,17 +35,15 @@ const StyledResetButton = styled.button`
 
 type CharactersPageProps = {
     characters : CharacterType[],
-    setCharacters: f,
+    setCharacters: Dispatch<SetStateAction<CharacterType[]>> ,
     nameFilter: string,
-    setNameFilter: f,
     statusFilter: string,
-    setStatusFilter: f,
-    onFilterByName: f,
-    onFilterByStatus: f,
-    onResetSearch: f,
+    onFilterByName: ChangeEventHandler<HTMLInputElement>,
+    onFilterByStatus: ChangeEventHandler<HTMLSelectElement>,
+    onResetSearch: MouseEventHandler<HTMLButtonElement>,
 }
 
-export default function CharactersPage({characters, setCharacters, nameFilter, setNameFilter, statusFilter, setStatusFilter, onFilterByName, onFilterByStatus, onResetSearch}: CharactersPageProps) {
+export default function CharactersPage({characters, setCharacters, nameFilter, statusFilter, onFilterByName, onFilterByStatus, onResetSearch}: CharactersPageProps) {
     useEffect(() => {
         const filteredCharacters = response.results
             .filter((character) => character.name.toLowerCase().includes(nameFilter))

@@ -1,9 +1,9 @@
 import './App.css'
-import CharactersPage from "./pages/CharactersPage.tsx";
+import CharactersPage from "./pages/Characters/CharactersPage.tsx";
 import {Route, Routes} from "react-router-dom";
 import HomePage from "./pages/HomePage.tsx";
 import Header from "./components/Header/Header.tsx";
-import CharacterDetailsPage from "./pages/CharacterDetailsPage.tsx";
+import CharacterDetailsPage from "./pages/Characters/CharacterDetailsPage.tsx";
 import {ChangeEvent, useState} from "react";
 import {CharacterType} from "./model/model.ts";
 import {response} from "./data/charactersData.ts";

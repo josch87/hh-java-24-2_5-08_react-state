@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import MainNavigation from "../MainNavigation/MainNavigation.tsx";
+import {Link} from "react-router-dom";
 
 const StyledHeader = styled.header`
     height: 5rem;
@@ -10,13 +11,18 @@ const StyledHeader = styled.header`
     padding: 0 20px;
 `;
 
+const StyledLink = styled(Link)`
+    text-decoration: none;
+    color: inherit;
+`;
+
 
 export default function Header() {
 
 
     return (
         <StyledHeader>
-            <h1>Rick & Morty</h1>
+            <StyledLink to="/" title="Home"><h1>Rick & Morty</h1></StyledLink>
             <MainNavigation />
         </StyledHeader>
     )

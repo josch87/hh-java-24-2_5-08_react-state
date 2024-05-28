@@ -1,7 +1,7 @@
 import {useEffect} from "react";
-import {response} from "../data/charactersData.ts";
-import {CharacterType} from "../model/model.ts";
-import CharacterCard from "../components/CharacterCard/CharacterCard.tsx";
+import {response} from "../../data/charactersData.ts";
+import {CharacterType} from "../../model/model.ts";
+import CharacterCard from "../../components/CharacterCard/CharacterCard.tsx";
 import styled from "styled-components";
 import {f} from "vite/dist/node/types.d-aGj9QkWt";
 

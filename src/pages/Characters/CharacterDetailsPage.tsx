@@ -1,5 +1,5 @@
 import {Link, useParams} from "react-router-dom";
-import {CharacterType} from "../model/model.ts";
+import {CharacterType} from "../../model/model.ts";
 
 type CharacterDetailsPageProps = {
     characters: CharacterType[]

@@ -31,8 +31,8 @@ export default function CharacterDetailsPage({characters}: CharacterDetailsPageP
 
             <StyledCharacterDetailsCard>
                 {character.image ?
-                    <img src={character.image} alt={character.name}/> :
-                    <img src="/src/assets/image-placeholder.jpg" alt={character.name}/>
+                    <img src={character.image} alt={character.name} draggable={"false"}/> :
+                    <img src="/src/assets/image-placeholder.jpg" alt={character.name} draggable={"false"}/>
                 }
                 <div>
                     <h2>{character.name}</h2>
@@ -47,8 +47,16 @@ export default function CharacterDetailsPage({characters}: CharacterDetailsPageP
                             <td>{character.species}</td>
                         </tr>
                         <tr>
+                            <td>Gender:</td>
+                            <td>{character.gender}</td>
+                        </tr>
+                        <tr>
                             <td>Location:</td>
                             <td>{character.location.name}</td>
+                        </tr>
+                        <tr>
+                            <td>Episodes:</td>
+                            <td>{character.episode.length}</td>
                         </tr>
                         </tbody>
                     </table>

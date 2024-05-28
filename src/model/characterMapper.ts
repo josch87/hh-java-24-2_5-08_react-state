@@ -9,14 +9,15 @@ export function mapNewCharacterDTOToCharacter(newCharacter: NewCharacterDTOType)
     const character : CharacterType = {
         id: -1,
         name: newCharacter.name,
-        image: "",
         status: newCharacter.status as StatusEnum,
-        episode: [],
         species: newCharacter.species,
+        gender: "unknown",
         location: {
             name: "",
             url: "",
         },
+        image: "",
+        episode: [],
     }
 
     return character;

@@ -58,7 +58,7 @@ export default function NewCharacterPage({characters, setCharacters}: NewCharact
     return (
         <Main title={"Create new character"}>
             <NewCharacterForm newCharacter={newCharacter} onSaveCharacter={onSaveCharacter} onUserInput={onUserInput}/>
-            <CharacterCard character={characterInPreview} />
+            <CharacterCard character={characterInPreview} isLinked={false}/>
         </Main>
     )
 }

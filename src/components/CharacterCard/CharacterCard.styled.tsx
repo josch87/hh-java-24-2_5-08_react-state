@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 type ButtonProps = {
     $status?: string,
+    $isLinked?: boolean,
 }
 
 export const StyledArticle = styled.article<ButtonProps>`
@@ -20,8 +21,8 @@ export const StyledArticle = styled.article<ButtonProps>`
     display: flex;
     flex-direction: column;
     align-items: center;
-    cursor: pointer;
-    
+    cursor: ${props => props.$isLinked ? "pointer" : "auto"};
+
     &:hover {
         background-color: lightcyan;
     }

@@ -34,7 +34,7 @@ const StyledHeaderContainer = styled.div`
     justify-content: space-between;
 `;
 
-export default function CharactersPage({characters,}: CharactersPageProps) {
+export default function CharactersPage({characters}: CharactersPageProps) {
 
     const {
         handleFilterByName,
@@ -50,22 +50,17 @@ export default function CharactersPage({characters,}: CharactersPageProps) {
         <>
             <Main title={"Characters"}>
                 <StyledHeaderContainer>
-                <CharacterSearch
-                    handleFilterByName={handleFilterByName}
-                    handleFilterByStatus={handleFilterByStatus}
-                    statusFilter={statusFilter}
-                    handleResetSearch={handleResetSearch}
-                    nameFilter={nameFilter}
-                />
-<div>
-
-                    <StyledLink to={"/characters/new"}>New character</StyledLink>
-
-</div>
-
+                    <CharacterSearch
+                        handleFilterByName={handleFilterByName}
+                        handleFilterByStatus={handleFilterByStatus}
+                        statusFilter={statusFilter}
+                        handleResetSearch={handleResetSearch}
+                        nameFilter={nameFilter}
+                    />
+                    <div>
+                        <StyledLink to={"/characters/new"}>New character</StyledLink>
+                    </div>
                 </StyledHeaderContainer>
-
-
 
                 {areFilteredCharactersZero ? <p>No characters found</p> :
                     <p>Number of characters: {filteredCharacters.length}</p>}

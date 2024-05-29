@@ -8,6 +8,7 @@ import {useEffect, useState} from "react";
 import {CharacterType} from "./model/model.ts";
 import NewCharacterPage from "./pages/Characters/NewCharacterPage.tsx";
 import axios from "axios";
+import LocationsPage from "./pages/Locations/LocationsPage.tsx";
 
 function App() {
 
@@ -18,7 +19,7 @@ function App() {
     }, []);
 
     function loadAllCharacters() {
-        axios.get("https://rickandmortyapi.com/api/characters")
+        axios.get("https://rickandmortyapi.com/api/character")
             .then((response) => {
                 setCharacters(response.data.results);
             })
@@ -38,6 +39,7 @@ function App() {
                     />}/>
                 <Route path="/characters/:id" element={<CharacterDetailsPage characters={characters}/>}/>
                 <Route path="/characters/new" element={<NewCharacterPage characters={characters} setCharacters={setCharacters}/>}/>
+                <Route path="/locations" element={<LocationsPage />}/>
             </Routes>
         </>
     )

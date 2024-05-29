@@ -36,6 +36,11 @@ const navigationItems: NavigationItemType[] = [
         title: "Characters",
         link: "/characters",
         sort: 2
+    },
+    {
+        title: "Locations",
+        link: "/locations",
+        sort: 3
     }
 ]
 

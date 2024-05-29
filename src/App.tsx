@@ -4,14 +4,29 @@ import {Route, Routes} from "react-router-dom";
 import HomePage from "./pages/HomePage.tsx";
 import Header from "./components/Header/Header.tsx";
 import CharacterDetailsPage from "./pages/Characters/CharacterDetailsPage.tsx";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {CharacterType} from "./model/model.ts";
-import {response} from "./data/charactersData.ts";
 import NewCharacterPage from "./pages/Characters/NewCharacterPage.tsx";
+import axios from "axios";
 
 function App() {
 
-    const [characters, setCharacters] = useState<CharacterType[]>(response.results);
+    const [characters, setCharacters] = useState<CharacterType[]>([]);
+
+    useEffect(() => {
+        loadAllCharacters();
+    }, []);
+
+    function loadAllCharacters() {
+        axios.get("https://rickandmortyapi.com/api/characters")
+            .then((response) => {
+                setCharacters(response.data.results);
+            })
+            .catch((error) => {
+                console.error(error.message);
+            });
+
+    }
 
     return (
         <>
